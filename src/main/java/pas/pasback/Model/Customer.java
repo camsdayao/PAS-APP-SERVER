@@ -1,9 +1,15 @@
 package pas.pasback.Model;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 //import lombok.NoArgsConstructor;
@@ -13,21 +19,16 @@ import javax.persistence.Table;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private int id;
     private String fname;
     private String lname;
     private String address;
     private String accountNum;
-    // String policy;
-    // String policyHolder;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Policy> policy;
 
     public Customer() {
-    }
-
-    public Customer(String fname, String lname, String address) {
-        this.fname = fname;
-        this.lname = lname;
-        this.address = address;
     }
 
     public Customer(int id, String fname, String lname, String address, String accountNum) {
@@ -78,9 +79,12 @@ public class Customer {
         this.accountNum = accountNum;
     }
 
-    @Override
-    public String toString() {
-        return "Customer [id=" + id + ", fname=" + fname + ", lname=" + lname + ", address=" + address + "]";
+    public List<Policy> getPolicy() {
+        return policy;
+    }
+
+    public void setPolicy(List<Policy> policy) {
+        this.policy = policy;
     }
 
 }

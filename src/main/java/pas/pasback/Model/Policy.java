@@ -1,7 +1,5 @@
 package pas.pasback.Model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,63 +11,75 @@ import javax.persistence.Table;
 public class Policy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int polId;
-    private LocalDate effectDate;
-    private String polHolder;
-    private String vehicle;
+    private int id;
+    private String polNum;
+    private String effectDate;
+    private String expiDate;
+
+    // @ManyToOne(cascade = CascadeType.ALL)
+    // private Customer customer;
 
     public Policy() {
     }
 
-    public Policy(LocalDate effectDate, String polHolder, String vehicle) {
+    public Policy(String effectDate, String expiDate) {
         this.effectDate = effectDate;
-        this.polHolder = polHolder;
-        this.vehicle = vehicle;
+        this.expiDate = expiDate;
     }
 
-    public Policy(int polId, LocalDate effectDate, String polHolder, String vehicle) {
-        this.polId = polId;
+    // public Policy(int id, String polNum, String effectDate, String expiDate, Customer customer) {
+    //     this.id = id;
+    //     this.polNum = polNum;
+    //     this.effectDate = effectDate;
+    //     this.expiDate = expiDate;
+        
+    // }
+
+    public Policy(int id, String polNum, String effectDate, String expiDate) {
+        this.id = id;
+        this.polNum = polNum;
         this.effectDate = effectDate;
-        this.polHolder = polHolder;
-        this.vehicle = vehicle;
+        this.expiDate = expiDate;
     }
 
-    public int getPolId() {
-        return polId;
+    public int getId() {
+        return id;
     }
 
-    public void setPolId(int polId) {
-        this.polId = polId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public LocalDate getEffectDate() {
+    public String getPolNum() {
+        return polNum;
+    }
+
+    public void setPolNum(String polNum) {
+        this.polNum = polNum;
+    }
+
+    public String getEffectDate() {
         return effectDate;
     }
 
-    public void setEffectDate(LocalDate effectDate) {
+    public void setEffectDate(String effectDate) {
         this.effectDate = effectDate;
     }
 
-    public String getPolHolder() {
-        return polHolder;
+    public String getExpiDate() {
+        return expiDate;
     }
 
-    public void setPolHolder(String polHolder) {
-        this.polHolder = polHolder;
+    public void setExpiDate(String expiDate) {
+        this.expiDate = expiDate;
     }
 
-    public String getVehicle() {
-        return vehicle;
-    }
+    // public Customer getCustomer() {
+    //     return customer;
+    // }
 
-    public void setVehicle(String vehicle) {
-        this.vehicle = vehicle;
-    }
-
-    @Override
-    public String toString() {
-        return "Policy [polId=" + polId + ", effectDate=" + effectDate + ", polHolder=" + polHolder + ", vehicle="
-                + vehicle + "]";
-    }
+    // public void setCustomer(Customer customer) {
+    //     this.customer = customer;
+    // }
 
 }
